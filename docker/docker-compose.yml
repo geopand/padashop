@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  mysql:
+    image: mysql:8.1.0
+    restart: unless-stopped
+    # user: "1000:1000"
+    environment:
+      - MYSQL_ROOT_PASSWORD=pada45903928
+      - MYSQL_PASSWORD=padokrator
+      - MYSQL_USER=padashop
+    ports:
+      - "127.0.0.1:3307:3306"
