@@ -28,16 +28,15 @@ public class UserController {
         user.setfName("george");
 
         model.addAttribute("user", user);
-        return "index";
+        return "user";
     }
-
 
     @PostMapping("/save")
     public String saveUser(User user, Model model) {
         logger.info("user is {}", user);
         userRepository.create(user);
         model.addAttribute("message", "user information was saved successfully");
-        return "index";
+        return "user";
     }
 
     @PostMapping("/register")

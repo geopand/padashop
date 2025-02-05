@@ -5,13 +5,16 @@ import java.util.Objects;
 public class User {
 
     private Long id;
-    private String fName;
-    private String lName;
+    private String username;
+    private String password;
     private String email;
-    private String country;
+    private String title;
+    private String fName;
+    private String sName;
     private String strAddress;
     private String city;
     private String region;
+    private String country;
     private String zipCode;
 
 
@@ -26,20 +29,20 @@ public class User {
         this.id = id;
     }
 
-    public String getfName() {
-        return fName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getlName() {
-        return lName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -50,12 +53,28 @@ public class User {
         this.email = email;
     }
 
-    public String getCountry() {
-        return country;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
     }
 
     public String getStrAddress() {
@@ -74,14 +93,6 @@ public class User {
         this.city = city;
     }
 
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
     public String getRegion() {
         return region;
     }
@@ -90,30 +101,49 @@ public class User {
         this.region = region;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", fname='" + fName + '\'' +
-                ", lname='" + lName + '\'' +
-                ", email='" + email + '\'' +
-                ", country='" + country + '\'' +
-                ", strAddress='" + strAddress + '\'' +
-                ", city='" + city + '\'' +
-                ", region='" + region + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(fName, user.fName) && Objects.equals(lName, user.lName) && Objects.equals(email, user.email) && Objects.equals(country, user.country) && Objects.equals(strAddress, user.strAddress) && Objects.equals(city, user.city) && Objects.equals(region, user.region) && Objects.equals(zipCode, user.zipCode);
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(title, user.title) && Objects.equals(fName, user.fName) && Objects.equals(sName, user.sName) && Objects.equals(strAddress, user.strAddress) && Objects.equals(city, user.city) && Objects.equals(region, user.region) && Objects.equals(country, user.country) && Objects.equals(zipCode, user.zipCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fName, lName, email, country, strAddress, city, region, zipCode);
+        return Objects.hash(id, username, password, email, title, fName, sName, strAddress, city, region, country, zipCode);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", title='" + title + '\'' +
+                ", fName='" + fName + '\'' +
+                ", sName='" + sName + '\'' +
+                ", strAddress='" + strAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
     }
 }

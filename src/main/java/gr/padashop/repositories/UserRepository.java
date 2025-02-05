@@ -30,7 +30,7 @@ public class UserRepository implements CrudRepository<User> {
         String sql = "INSERT into users (first_name, last_name, email, country, street_address,city,region,postal_code)VALUES(?,?,?,?,?,?,?,?)";
 
         jdbcClient.sql(sql)
-                .params(List.of(user.getfName(), user.getlName(), user.getEmail(), user.getCountry(), user.getStrAddress(), user.getCity(), user.getRegion(), user.getZipCode()))
+                .params(List.of(user.getfName(), user.getsName(), user.getEmail(), user.getCountry(), user.getStrAddress(), user.getCity(), user.getRegion(), user.getZipCode()))
                 .update();
     }
 
@@ -40,7 +40,7 @@ public class UserRepository implements CrudRepository<User> {
                 ",region = ?, postal_code = ?";
 
         jdbcClient.sql(sql)
-                .params(List.of(user.getfName(), user.getlName(), user.getEmail(), user.getCountry(), user.getStrAddress(), user.getCity(), user.getRegion(), user.getZipCode()))
+                .params(List.of(user.getfName(), user.getsName(), user.getEmail(), user.getCountry(), user.getStrAddress(), user.getCity(), user.getRegion(), user.getZipCode()))
                 .update();
     }
 
