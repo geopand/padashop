@@ -1,9 +1,9 @@
-@param gr.padashop.models.ProductCategory category
 @param java.util.List<gr.padashop.models.ProductCategory> categories
 @param gr.padashop.models.Product product
 @param String message = null
 @param String error = null
 
+@template.layout.main(content = @`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,7 @@
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
     <form class="p-6" action="/api/category/save" method="post">
         <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Δημιουργία νέας κατηγορίας</h2>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Εισαγωγή νέου προϊόντος</h2>
             <p class="mt-1 text-sm leading-6 text-gray-500">Τα πεδία με (*) είναι υποχρεωτικά</p>
 
             @if(message != null)
@@ -119,3 +119,4 @@
 </div>
 </body>
 </html>
+`)

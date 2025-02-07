@@ -3,6 +3,7 @@
 @param String message = null
 @param String error = null
 
+@template.layout.main(content = @`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,8 +78,6 @@
                     </div>
                 </div>
 
-
-
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <button type="button" class="text-sm font-semibold leading-6 text-gray-900"><a href="/api/category/">Άκυρο</a></button>
             <button type="submit"
@@ -90,3 +89,4 @@
 </div>
 </body>
 </html>
+`)

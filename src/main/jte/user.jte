@@ -2,21 +2,21 @@
 @param String message = null
 @param String error = null
 
+@template.layout.main(content = @`
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Information Form</title>
+    <title>Φόρμα Εισαγωγής Χρήστη</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
     <form class="p-6" action="/api/user/save" method="post">
         <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-            <p class="mt-1 text-sm leading-6 text-gray-500">Fields marked with an asterisk (*) are required.</p>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Φόρμα Εισαγωγής Χρήστη</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-500">Τα πεδία με (*) είναι υποχρεωτικά</p>
 
             @if(message != null)
                 <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
@@ -34,7 +34,7 @@
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                     <label for="fName" class="block text-sm font-medium leading-6 text-gray-900">
-                        First name <span class="text-red-500">*</span>
+                        Όνομα <span class="text-red-500">*</span>
                     </label>
                     <div class="mt-2">
                         <input type="text"
@@ -47,7 +47,7 @@
 
                 <div class="sm:col-span-3">
                     <label for="lName" class="block text-sm font-medium leading-6 text-gray-900">
-                        Last name <span class="text-red-500">*</span>
+                        Επίθετο <span class="text-red-500">*</span>
                     </label>
                     <div class="mt-2">
                         <input type="text"
@@ -59,7 +59,9 @@
                 </div>
 
                 <div class="sm:col-span-4">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">
+                        E-mail
+                    </label>
                     <div class="mt-2">
                         <input type="email" name="email" id="email" value="${user.getEmail()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -67,11 +69,11 @@
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                    <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Χώρα</label>
                     <div class="mt-2">
                         <select id="country" name="country"
                                 class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option value="">Select a country</option>
+                            <option value="">Επιλογή χώρας</option>
                             <option value="US"
                                     selected="${user.getCountry() != null && user.getCountry().equals("GR")}">Greece
                             </option>
@@ -81,8 +83,9 @@
                 </div>
 
                 <div class="col-span-full">
-                    <label for="strAddress" class="block text-sm font-medium leading-6 text-gray-900">Street
-                        address</label>
+                    <label for="strAddress" class="block text-sm font-medium leading-6 text-gray-900">
+                        Οδός
+                    </label>
                     <div class="mt-2">
                         <input type="text" name="strAddress" id="strAddress" value="${user.getStrAddress()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -90,7 +93,7 @@
                 </div>
 
                 <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Πόλη</label>
                     <div class="mt-2">
                         <input type="text" name="city" id="city" value="${user.getCity()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -113,8 +116,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="zipCode" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal
-                        code</label>
+                    <label for="zipCode" class="block text-sm font-medium leading-6 text-gray-900">Τ.Κ</label>
                     <div class="mt-2">
                         <input type="text" name="zipCode" id="zipCode" value="${user.getZipCode()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -134,3 +136,4 @@
 </div>
 </body>
 </html>
+`)
