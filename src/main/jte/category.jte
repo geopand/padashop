@@ -65,8 +65,7 @@ page=page
                             <option value="">Επιλογή κατηγορίας</option>
 
                             @for(gr.padashop.models.ProductCategory cat: categories)
-                                <option value="${cat.getId()}"
-                                        selected="${category.getId() != null && category.getParent().equals(cat.getId())}">
+                                <option value="${cat.getId()}">
                                     ${cat.getName()}
                                 </option>
                             @endfor

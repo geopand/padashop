@@ -42,12 +42,19 @@ public class ProductCategoryController implements PageController {
     @PostMapping("/save")
     public String saveCategory(ProductCategory category, Model model) {
         logger.info("category is {}", category);
-        categoryRepository.create(category);
         model.addAttribute("page", pageInfo());
-        model.addAttribute("message", "Η κατηγορία σώθηκε επιτυχώς");
-        model.addAttribute("category", category);
+        if (categories.isEmpty()) {
+            categories = categoryRepository.getAll();
+        }
         model.addAttribute("categories", categories);
-
+        try {
+            categoryRepository.create(category);
+            model.addAttribute("message", "Η κατηγορία σώθηκε επιτυχώς");
+            model.addAttribute("category", category);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            model.addAttribute("error", "Αποτυχία αποθήκευσης κατηγορίας");
+        }
         return "category";
     }
 
