@@ -35,3 +35,8 @@ ALTER TABLE `eshop`.`products`
 ADD UNIQUE INDEX `slug_UNIQUE` (`slug` ASC) VISIBLE;
 ;
 
+ALTER TABLE `eshop`.`categories`
+ADD UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE;
+;
+
+

@@ -50,13 +50,16 @@ public class ProductController implements PageController {
     @PostMapping("/save")
     public String save(Product product, Model model, @RequestPart("file") MultipartFile file) {
         logger.info("product is {}", product);
+        if (categories.isEmpty()) {
+            categories = categoryRepository.getAll();
+        }
         model.addAttribute("page", pageInfo());
+        model.addAttribute("categories", categories);
         try {
-            imageService.save(file);
             product.setPicture(file.getOriginalFilename());
             productRepository.create(product);
+            imageService.save(file);
             model.addAttribute("message", "Το προϊόν σώθηκε επιτυχώς");
-            model.addAttribute("categories", categories);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             model.addAttribute("error", "Αποτυχία αποθήκευσης προϊόντος");
