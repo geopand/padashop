@@ -12,6 +12,10 @@ public class Product {
     private String picture;
     private BigDecimal price;
     private String status;
+    private Long stock;
+    private String brand;
+
+    //TODO characteristics?
 
     public Product() {
     }
@@ -80,6 +84,22 @@ public class Product {
         this.status = status;
     }
 
+    public Long getStock() {
+        return stock;
+    }
+
+    public void setStock(Long stock) {
+        this.stock = stock;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -99,10 +119,25 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", slug='" + slug + '\'' +
-                ", category='" + category + '\'' +
+                ", category=" + category +
                 ", picture='" + picture + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 ", status='" + status + '\'' +
+                ", stock=" + stock +
+                ", brand='" + brand + '\'' +
                 '}';
+    }
+
+    public static Product copy(ProductDto dto) {
+        Product p = new Product();
+        p.setName(dto.getName());
+        p.setDescription(dto.getDescription());
+        p.setBrand(dto.getBrand());
+        p.setStock(dto.getStock());
+        p.setPicture(dto.getPicture());
+        p.setSlug(dto.getSlug());
+        p.setCategory(new Category(dto.getCategory()));
+        p.setPrice(dto.getPrice());
+        return p;
     }
 }

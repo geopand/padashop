@@ -2,6 +2,7 @@ package gr.padashop.web;
 
 import gr.padashop.models.Product;
 import gr.padashop.models.ProductCategory;
+import gr.padashop.models.ProductDto;
 import gr.padashop.repositories.ProductCategoryRepository;
 import gr.padashop.repositories.ProductRepository;
 import gr.padashop.services.ImageFileService;
@@ -48,7 +49,9 @@ public class ProductController implements PageController {
     }
 
     @PostMapping("/save")
-    public String save(Product product, Model model, @RequestPart("file") MultipartFile file) {
+    public String save(ProductDto productDto, Model model, @RequestPart("file") MultipartFile file) {
+        Product product = Product.copy(productDto);
+
         logger.info("product is {}", product);
         if (categories.isEmpty()) {
             categories = categoryRepository.getAll();

@@ -39,4 +39,8 @@ ALTER TABLE `eshop`.`categories`
 ADD UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE;
 ;
 
+ALTER TABLE `eshop`.`products`
+ADD COLUMN `brand` VARCHAR(100) NULL AFTER `status`,
+ADD COLUMN `stock` INT NULL DEFAULT 0 AFTER `brand`;
+
 

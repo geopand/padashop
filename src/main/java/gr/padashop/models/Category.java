@@ -7,6 +7,12 @@ public class Category {
     private String description;
     private long parent;
 
+    public Category() {}
+
+    public Category(Long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }

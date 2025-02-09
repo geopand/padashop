@@ -35,6 +35,8 @@ public class ProductRepository implements CrudRepository<Product> {
                     picture,
                     price,
                     status,
+                    brand,
+                    stock,
                     c.id AS categoryId,
                     c.name AS categoryName,
                     c.description AS categoryDescription,
@@ -57,6 +59,8 @@ public class ProductRepository implements CrudRepository<Product> {
                     picture,
                     price,
                     status,
+                    brand,
+                    stock,
                     c.id AS categoryId,
                     c.name AS categoryName,
                     c.description AS categoryDescription,
@@ -103,8 +107,17 @@ public class ProductRepository implements CrudRepository<Product> {
     @Override
     public void create(Product product) {
 
-        String sql = "INSERT into products (name, description, slug, category, picture, price) VALUES(?,?,?,?,?,?)";
-        jdbcClient.sql(sql).params(List.of(product.getName(), product.getDescription(), product.getSlug(), product.getCategory(), product.getPicture() == null ? "" : product.getPicture(), product.getPrice())).update();
+        String sql = "INSERT into products (name, description, slug, category, picture, price, brand, stock) VALUES(?,?,?,?,?,?,?,?)";
+        jdbcClient.sql(sql).params(List.of(
+                product.getName(),
+                product.getDescription(),
+                product.getSlug(),
+                product.getCategory().getId(),
+                product.getPicture() == null ? "" : product.getPicture(),
+                product.getPrice(),
+                product.getBrand(),
+                product.getStock()
+                )).update();
     }
 
     @Override
@@ -129,6 +142,7 @@ public class ProductRepository implements CrudRepository<Product> {
             Product p = new Product();
             Category c = new Category();
             p.setCategory(c);
+
             p.setId(rs.getLong("productId"));
             p.setName(rs.getString("productName"));
             p.setDescription(rs.getString("productDescription"));
@@ -136,6 +150,9 @@ public class ProductRepository implements CrudRepository<Product> {
             p.setPicture(rs.getString("picture"));
             p.setPrice(rs.getBigDecimal("price"));
             p.setStatus(rs.getString("status"));
+            p.setBrand(rs.getString("brand"));
+            p.setStock(rs.getLong("stock"));
+
             c.setId(rs.getLong("categoryId"));
             c.setName(rs.getString("categoryName"));
             c.setDescription(rs.getString("categoryDescription"));
