@@ -1,14 +1,20 @@
 package gr.padashop.models;
 
-import java.util.Objects;
-
-public class Cart {
+public class CartItem {
     private Long id;
     private Long userId;
     private Product product;
     private int quantity;
 
-    public Cart() {
+    public CartItem() {
+    }
+
+    public CartItem(Long userId, Long productId) {
+        this.userId = userId;
+        Product p = new Product();
+        p.setId(productId);
+        this.product = p;
+        this.quantity = 1;
     }
 
     public Long getId() {

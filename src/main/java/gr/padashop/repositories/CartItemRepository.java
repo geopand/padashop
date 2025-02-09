@@ -1,6 +1,6 @@
 package gr.padashop.repositories;
 
-import gr.padashop.models.Cart;
+import gr.padashop.models.CartItem;
 import gr.padashop.models.Product;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -15,16 +15,16 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public class CartRepository implements CrudRepository<Cart> {
+public class CartItemRepository implements CrudRepository<CartItem> {
 
     private final JdbcClient jdbcClient;
 
-    CartRepository(JdbcClient jdbcClient) {
+    CartItemRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
     @Override
-    public List<Cart> getAll() {
+    public List<CartItem> getAll() {
         String sql = """
                  SELECT
                     c.id AS cartId,
@@ -44,10 +44,10 @@ public class CartRepository implements CrudRepository<Cart> {
                         INNER JOIN
                     products AS p ON c.product_id = p.id;
                 """;
-        return jdbcClient.sql(sql).query(Cart.class).list();
+        return jdbcClient.sql(sql).query(new CartItemMapper()).list();
     }
 
-    public List<Cart> getAllByUserId(long userId) {
+    public List<CartItem> getAllByUserId(long userId) {
 
         String sql = """
                 SELECT
@@ -70,8 +70,37 @@ public class CartRepository implements CrudRepository<Cart> {
                 WHERE c.user_id = :userId
                 """;
 
-        return jdbcClient.sql(sql).param("userId", userId).query(new CartMapper()).list();
+        return jdbcClient.sql(sql).param("userId", userId).query(new CartItemMapper()).list();
+    }
 
+    public List<CartItem> getAllByUserIdAndProduct(long userId, long productId) {
+
+        String sql = """
+                SELECT
+                    c.id AS cartId,
+                    c.user_id AS userId,
+                    c.product_id AS productId,
+                    quantity,
+                    p.id AS productId,
+                    p.name AS productName,
+                    p.description AS productDescription,
+                    p.slug AS productSlug,
+                    p.brand AS productBrand,
+                    p.price AS productPrice,
+                    p.stock AS productStock,
+                    p.picture AS productPicture
+                FROM
+                    cart AS c
+                        INNER JOIN
+                    products AS p ON c.product_id = p.id
+                WHERE c.user_id = :userId AND c.product_id = :productId
+                """;
+
+        return jdbcClient.sql(sql)
+                .param("userId", userId)
+                .param("productId", productId)
+                .query(new CartItemMapper())
+                .list();
     }
 
     public int incrementQuantityByUserAndProduct(long userId, long productId) {
@@ -106,16 +135,16 @@ public class CartRepository implements CrudRepository<Cart> {
     }
 
     @Override
-    public void create(Cart cart) {
-//        String sql = "INSERT into users (first_name, last_name, email, country, street_address,city,region,postal_code)VALUES(?,?,?,?,?,?,?,?)";
-//
-//        jdbcClient.sql(sql)
-//                .params(List.of(user.getfName(), user.getsName(), user.getEmail(), user.getCountry(), user.getStrAddress(), user.getCity(), user.getRegion(), user.getZipCode()))
-//                .update();
+    public void create(CartItem cartItem) {
+        String sql = "INSERT into cart (user_id, product_id, quantity)VALUES(?,?,?)";
+
+        jdbcClient.sql(sql)
+                .params(List.of(cartItem.getUserId(), cartItem.getProduct().getId(), cartItem.getQuantity()))
+                .update();
     }
 
     @Override
-    public void update(Cart cart) {
+    public void update(CartItem cartItem) {
 //        String sql = "UPDATE users set  first_name= ? , last_name=?, email = ?, country = ?, street_address = ?,city = ?" +
 //                ",region = ?, postal_code = ?";
 //
@@ -134,7 +163,7 @@ public class CartRepository implements CrudRepository<Cart> {
     }
 
     @Override
-    public Optional<Cart> getById(String id) {
+    public Optional<CartItem> getById(String id) {
         String sql = """
                  SELECT
                     c.id AS cartId,
@@ -158,20 +187,20 @@ public class CartRepository implements CrudRepository<Cart> {
         return jdbcClient
                 .sql(sql)
                 .param("id", Long.getLong(id))
-                .query(Cart.class)
+                .query(CartItem.class)
                 .optional();
     }
 
-    class CartMapper implements RowMapper<Cart> {
+    class CartItemMapper implements RowMapper<CartItem> {
 
         @Override
-        public Cart mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Cart cart = new Cart();
+        public CartItem mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CartItem cartItem = new CartItem();
             Product p = new Product();
-            cart.setId(rs.getLong("cartId"));
-            cart.setUserId(rs.getLong("userId"));
-            cart.setQuantity(rs.getInt("quantity"));
-            cart.setProduct(p);
+            cartItem.setId(rs.getLong("cartId"));
+            cartItem.setUserId(rs.getLong("userId"));
+            cartItem.setQuantity(rs.getInt("quantity"));
+            cartItem.setProduct(p);
 
             p.setId(rs.getLong("productId"));
             p.setName(rs.getString("productName"));
@@ -183,7 +212,7 @@ public class CartRepository implements CrudRepository<Cart> {
             p.setBrand(rs.getString("productBrand"));
             p.setStock(rs.getLong("productStock"));
 
-            return cart;
+            return cartItem;
         }
     }
 
