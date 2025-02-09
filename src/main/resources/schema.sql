@@ -43,4 +43,10 @@ ALTER TABLE `eshop`.`products`
 ADD COLUMN `brand` VARCHAR(100) NULL AFTER `status`,
 ADD COLUMN `stock` INT NULL DEFAULT 0 AFTER `brand`;
 
+CREATE TABLE `eshop`.`cart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `quantity` INT NULL,
+  PRIMARY KEY (`id`));
 

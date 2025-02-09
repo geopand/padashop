@@ -27,7 +27,6 @@ public class UserController implements PageController {
     @GetMapping("/")
     public String index(Model model) {
         User user = new User();
-        user.setfName("george");
 
         model.addAttribute("user", user);
         model.addAttribute("page", pageInfo());
