@@ -8,7 +8,7 @@ public class Product {
     private String name;
     private String description;
     private String slug;
-    private Long category;
+    private Category category;
     private String picture;
     private BigDecimal price;
     private String status;
@@ -48,11 +48,11 @@ public class Product {
         this.slug = slug;
     }
 
-    public Long getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Long category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
