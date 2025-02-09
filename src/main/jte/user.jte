@@ -1,19 +1,14 @@
 @param gr.padashop.models.User user
+@param gr.padashop.web.models.PageInfo page
 @param String message = null
 @param String error = null
 
-@template.layout.main(content = @`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Φόρμα Εισαγωγής Χρήστη</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 p-6">
+@template.layout.main(
+page = page,
+content = @`
+<div class="bg-gray-100 p-6">
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-    <form class="p-6" action="/api/user/save" method="post">
+    <form class="p-6" action="/user/save" method="post">
         <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Φόρμα Εισαγωγής Χρήστη</h2>
             <p class="mt-1 text-sm leading-6 text-gray-500">Τα πεδία με (*) είναι υποχρεωτικά</p>
@@ -126,7 +121,7 @@
         </div>
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900"><a href="/api/category/">Άκυρο</a></button>
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900"><a href="/user/">Άκυρο</a></button>
             <button type="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Αποθήκευση
@@ -134,6 +129,5 @@
         </div>
     </form>
 </div>
-</body>
-</html>
+</div>
 `)

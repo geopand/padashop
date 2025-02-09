@@ -18,3 +18,20 @@ CREATE TABLE `eshop`.`categories` (
   `description` MEDIUMTEXT NULL,
   `parent` INT NULL,
   PRIMARY KEY (`id`));
+
+
+  CREATE TABLE `eshop`.`products` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(200) NOT NULL,
+    `description` MEDIUMTEXT NULL,
+    `slug` VARCHAR(300) NULL,
+    `category` INT NULL,
+    `picture` VARCHAR(150) NULL,
+    `price` VARCHAR(45) NULL,
+    `status` VARCHAR(45) NULL,
+    PRIMARY KEY (`id`));
+
+ALTER TABLE `eshop`.`products`
+ADD UNIQUE INDEX `slug_UNIQUE` (`slug` ASC) VISIBLE;
+;
+

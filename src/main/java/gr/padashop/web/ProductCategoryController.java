@@ -3,6 +3,7 @@ package gr.padashop.web;
 
 import gr.padashop.models.ProductCategory;
 import gr.padashop.repositories.ProductCategoryRepository;
+import gr.padashop.web.models.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/category")
-public class ProductCategoryController {
+@RequestMapping("/category")
+public class ProductCategoryController implements PageController {
     public static final Logger logger = LoggerFactory.getLogger(ProductCategoryController.class);
-    private List<ProductCategory> categories= new ArrayList<>();
+    private List<ProductCategory> categories = new ArrayList<>();
+    private static final PageInfo PAGE_INFO = new PageInfo("Φόρμα δημιουργίας κατηγορίας", "");
 
     private final ProductCategoryRepository categoryRepository;
 
@@ -31,6 +33,7 @@ public class ProductCategoryController {
         ProductCategory category = new ProductCategory();
         categories = categoryRepository.getAll();
 
+        model.addAttribute("page", pageInfo());
         model.addAttribute("category", category);
         model.addAttribute("categories", categories);
         return "category";
@@ -40,10 +43,16 @@ public class ProductCategoryController {
     public String saveCategory(ProductCategory category, Model model) {
         logger.info("category is {}", category);
         categoryRepository.create(category);
+        model.addAttribute("page", pageInfo());
         model.addAttribute("message", "Η κατηγορία σώθηκε επιτυχώς");
         model.addAttribute("category", category);
         model.addAttribute("categories", categories);
 
         return "category";
+    }
+
+    @Override
+    public PageInfo pageInfo() {
+        return PAGE_INFO;
     }
 }
