@@ -73,7 +73,7 @@ public class CartItemRepository implements CrudRepository<CartItem> {
         return jdbcClient.sql(sql).param("userId", userId).query(new CartItemMapper()).list();
     }
 
-    public List<CartItem> getAllByUserIdAndProduct(long userId, long productId) {
+    public Optional<CartItem> getCartItemByUserIdAndProduct(long userId, long productId) {
 
         String sql = """
                 SELECT
@@ -93,14 +93,14 @@ public class CartItemRepository implements CrudRepository<CartItem> {
                     cart AS c
                         INNER JOIN
                     products AS p ON c.product_id = p.id
-                WHERE c.user_id = :userId AND c.product_id = :productId
+                WHERE c.user_id = :userId AND c.product_id = :productId limit 1;
                 """;
 
         return jdbcClient.sql(sql)
                 .param("userId", userId)
                 .param("productId", productId)
                 .query(new CartItemMapper())
-                .list();
+                .optional();
     }
 
     public int incrementQuantityByUserAndProduct(long userId, long productId) {
@@ -161,6 +161,8 @@ public class CartItemRepository implements CrudRepository<CartItem> {
                 .param("id", id)
                 .update();
     }
+
+
 
     @Override
     public Optional<CartItem> getById(String id) {
