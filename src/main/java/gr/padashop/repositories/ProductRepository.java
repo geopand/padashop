@@ -3,7 +3,6 @@ package gr.padashop.repositories;
 
 import gr.padashop.models.Category;
 import gr.padashop.models.Product;
-import gr.padashop.models.ProductCategory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -22,6 +21,17 @@ public class ProductRepository implements CrudRepository<Product> {
 
     public ProductRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
+    }
+
+
+    public Integer countById(){
+        String sql = """
+                SELECT
+                    count(id)
+                FROM
+                    products
+                """;
+        return jdbcClient.sql(sql).query(Integer.class).single();
     }
 
     @Override
