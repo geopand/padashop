@@ -15,11 +15,20 @@ public class Order {
     private int ccCVC;
     private boolean isSelfPickUp;
     private String street;
-    private String streetNumber;
     private String city;
     private String state;
     private String zipCode;
     private String country;
+    private long createdAt;
+
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;
@@ -109,14 +118,6 @@ public class Order {
         this.street = street;
     }
 
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
     public String getCity() {
         return city;
     }
@@ -163,7 +164,6 @@ public class Order {
                 ", ccCVC=" + ccCVC +
                 ", isSelfPickUp=" + isSelfPickUp +
                 ", street='" + street + '\'' +
-                ", streetNumber='" + streetNumber + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", zipCode='" + zipCode + '\'' +
