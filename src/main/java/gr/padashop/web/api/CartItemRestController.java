@@ -35,22 +35,29 @@ public class CartItemRestController {
 
     @PutMapping("/add")
     public ResponseEntity<String> addToCart(@RequestParam long userId, @RequestParam long productId) {
+        logger.debug("Will add to cart");
 
         Optional<CartItem> cartItem = cartItemRepository.getCartItemByUserIdAndProduct(userId, productId);
-        int stock = productRepository.countById();
+        int stock = productRepository.getStockById(productId);
+        logger.debug("stock is:{}", stock);
+
         if (stock <= 0) {
+            logger.debug("Not enough stock.");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough stock");
         }
 
         if (cartItem.isEmpty()) {
+            logger.info("There is not cart. I am creating one...");
                 CartItem item = new CartItem(userId, productId);
                 cartItemRepository.create(item);
         } else {
             if (cartItem.get().getQuantity() >= stock) {
+                logger.debug("Cart quantity >= stock {} {}", cartItem.get().getQuantity(), stock);
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough stock");
             } else {
                 int rowsAffected = cartItemRepository.incrementQuantityByUserAndProduct(userId, productId);
                 if (rowsAffected == 0) {
+                    logger.debug("user id or product id are not found");
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user id or product id are not found");
                 }
             }
@@ -61,7 +68,7 @@ public class CartItemRestController {
 
     @PutMapping("/remove")
     public ResponseEntity<String> removeFromCart(@RequestParam long userId, @RequestParam long productId) {
-        int stock = productRepository.countById();
+        int stock = productRepository.getStockById(productId);
         if (stock <= 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough stock");
         }

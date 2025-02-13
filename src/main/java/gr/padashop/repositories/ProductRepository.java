@@ -34,6 +34,18 @@ public class ProductRepository implements CrudRepository<Product> {
         return jdbcClient.sql(sql).query(Integer.class).single();
     }
 
+    public int getStockById(long productId) {
+        String sql = """
+                SELECT
+                    stock
+                FROM
+                    products
+                WHERE id= :productId
+                """;
+        return jdbcClient.sql(sql).param("productId", productId).query(Integer.class).single();
+
+    }
+
     @Override
     public List<Product> getAll() {
         String sql = """
