@@ -7,7 +7,7 @@ public class Order {
     private Long id;
     private Long userId;
     private List<OrderItem> items;
-    private int ccType;
+    private CCType ccType;
     private String ccName;
     private String ccNumber;
     private int ccExpiryMoth;
@@ -54,11 +54,11 @@ public class Order {
         this.items = items;
     }
 
-    public int getCcType() {
+    public CCType getCcType() {
         return ccType;
     }
 
-    public void setCcType(int ccType) {
+    public void setCcType(CCType ccType) {
         this.ccType = ccType;
     }
 

@@ -13,6 +13,8 @@ public class OrderItem {
     private Long shippingDate; //epoch
 
 
+    public OrderItem(){}
+
     public OrderItem(Long orderId, Product product, Integer quantity, BigDecimal price) {
         this.orderId = orderId;
         this.product = product;
