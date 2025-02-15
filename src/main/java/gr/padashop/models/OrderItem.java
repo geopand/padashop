@@ -2,6 +2,7 @@ package gr.padashop.models;
 
 import java.math.BigDecimal;
 
+
 public class OrderItem {
     private Long id;
     private Long orderId;
@@ -10,6 +11,14 @@ public class OrderItem {
     private BigDecimal price;
     private String itemStatus;
     private Long shippingDate; //epoch
+
+
+    public OrderItem(Long orderId, Product product, Integer quantity, BigDecimal price) {
+        this.orderId = orderId;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public Long getId() {
         return id;

@@ -5,9 +5,9 @@ import java.util.List;
 public class Order {
 
     private Long id;
-    private String userId;
+    private Long userId;
     private List<OrderItem> items;
-    private String ccType;
+    private int ccType;
     private String ccName;
     private String ccNumber;
     private int ccExpiryMoth;
@@ -38,11 +38,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -54,11 +54,11 @@ public class Order {
         this.items = items;
     }
 
-    public String getCcType() {
+    public int getCcType() {
         return ccType;
     }
 
-    public void setCcType(String ccType) {
+    public void setCcType(int ccType) {
         this.ccType = ccType;
     }
 
@@ -152,22 +152,6 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", items=" + items +
-                ", ccType='" + ccType + '\'' +
-                ", ccName='" + ccName + '\'' +
-                ", ccNumber='" + ccNumber + '\'' +
-                ", ccExpiryMoth=" + ccExpiryMoth +
-                ", ccExpiryYear=" + ccExpiryYear +
-                ", ccCVC=" + ccCVC +
-                ", isSelfPickUp=" + isSelfPickUp +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return "Order{" + "id=" + id + ", userId='" + userId + '\'' + ", items=" + items + ", ccType='" + ccType + '\'' + ", ccName='" + ccName + '\'' + ", ccNumber='" + ccNumber + '\'' + ", ccExpiryMoth=" + ccExpiryMoth + ", ccExpiryYear=" + ccExpiryYear + ", ccCVC=" + ccCVC + ", isSelfPickUp=" + isSelfPickUp + ", street='" + street + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' + ", zipCode='" + zipCode + '\'' + ", country='" + country + '\'' + '}';
     }
 }

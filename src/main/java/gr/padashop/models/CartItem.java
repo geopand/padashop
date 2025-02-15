@@ -9,6 +9,7 @@ public class CartItem {
     public CartItem() {
     }
 
+
     public CartItem(Long userId, Long productId) {
         this.userId = userId;
         Product p = new Product();
