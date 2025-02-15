@@ -1,7 +1,7 @@
 package gr.padashop.web;
 
 
-import gr.padashop.models.ProductCategory;
+import gr.padashop.models.Category;
 import gr.padashop.repositories.ProductCategoryRepository;
 import gr.padashop.web.models.PageInfo;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/category")
 public class ProductCategoryController implements PageController {
     public static final Logger logger = LoggerFactory.getLogger(ProductCategoryController.class);
-    private List<ProductCategory> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
     private static final PageInfo PAGE_INFO = new PageInfo("Φόρμα δημιουργίας κατηγορίας", "");
 
     private final ProductCategoryRepository categoryRepository;
@@ -30,7 +30,7 @@ public class ProductCategoryController implements PageController {
 
     @GetMapping("/")
     public String index(Model model) {
-        ProductCategory category = new ProductCategory();
+        Category category = new Category();
         categories = categoryRepository.getAll();
 
         model.addAttribute("page", pageInfo());
@@ -40,7 +40,7 @@ public class ProductCategoryController implements PageController {
     }
 
     @PostMapping("/save")
-    public String saveCategory(ProductCategory category, Model model) {
+    public String saveCategory(Category category, Model model) {
         logger.info("category is {}", category);
         model.addAttribute("page", pageInfo());
         if (categories.isEmpty()) {

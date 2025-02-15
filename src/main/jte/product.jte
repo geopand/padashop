@@ -1,4 +1,4 @@
-@param java.util.List<gr.padashop.models.ProductCategory> categories
+@param java.util.List<gr.padashop.models.Category> categories
 @param gr.padashop.web.models.PageInfo page
 @param String message = null
 @param String error = null
@@ -134,7 +134,7 @@ content = @`
                         <select id="category" name="category"
                                 class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Επιλογή κατηγορίας</option>
-                            @for(gr.padashop.models.ProductCategory cat: categories)
+                            @for(gr.padashop.models.Category cat: categories)
                                 <option value="${cat.getId()}">
                                     ${cat.getName()}
                                 </option>

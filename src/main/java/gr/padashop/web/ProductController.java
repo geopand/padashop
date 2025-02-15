@@ -1,7 +1,7 @@
 package gr.padashop.web;
 
+import gr.padashop.models.Category;
 import gr.padashop.models.Product;
-import gr.padashop.models.ProductCategory;
 import gr.padashop.models.ProductDto;
 import gr.padashop.repositories.ProductCategoryRepository;
 import gr.padashop.repositories.ProductRepository;
@@ -29,7 +29,7 @@ public class ProductController implements PageController {
     private final ProductRepository productRepository;
     private final ProductCategoryRepository categoryRepository;
     private final ImageFileService imageService;
-    List<ProductCategory> categories = new ArrayList<>();
+    List<Category> categories = new ArrayList<>();
 
 
     public ProductController(ProductRepository productRepository,

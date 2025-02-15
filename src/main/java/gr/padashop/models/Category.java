@@ -6,7 +6,7 @@ public class Category {
     private String name;
     private String description;
     private String slug;
-    private long parent;
+    private Long parent;
 
     public Category() {}
 
@@ -38,11 +38,11 @@ public class Category {
         this.description = description;
     }
 
-    public long getParent() {
+    public Long getParent() {
         return parent;
     }
 
-    public void setParent(long parent) {
+    public void setParent(Long parent) {
         this.parent = parent;
     }
 

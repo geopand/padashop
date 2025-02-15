@@ -1,6 +1,6 @@
 package gr.padashop.repositories;
 
-import gr.padashop.models.ProductCategory;
+import gr.padashop.models.Category;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public class ProductCategoryRepository implements CrudRepository<ProductCategory> {
+public class ProductCategoryRepository implements CrudRepository<Category> {
 
     private final JdbcClient jdbcClient;
 
@@ -20,26 +20,26 @@ public class ProductCategoryRepository implements CrudRepository<ProductCategory
 
 
     @Override
-    public List<ProductCategory> getAll() {
+    public List<Category> getAll() {
         String sql = "SELECT * FROM categories";
-        return jdbcClient.sql(sql).query(ProductCategory.class).list();
+        return jdbcClient.sql(sql).query(Category.class).list();
     }
 
     @Override
-    public void create(ProductCategory category) {
+    public void create(Category category) {
         String sql;
         if (category.getParent() == null) {
-            sql = "INSERT into categories (name, description) VALUES(?,?)";
-            jdbcClient.sql(sql).params(List.of(category.getName(), category.getDescription())).update();
+            sql = "INSERT into categories (name, description, slug) VALUES(?,?,?)";
+            jdbcClient.sql(sql).params(List.of(category.getName(), category.getDescription(), category.getSlug())).update();
         } else {
-            sql = "INSERT into categories (name, description, parent) VALUES(?,?,?)";
-            jdbcClient.sql(sql).params(List.of(category.getName(), category.getDescription(), category.getParent())).update();
+            sql = "INSERT into categories (name, description, parent, slug) VALUES(?,?,?,?)";
+            jdbcClient.sql(sql).params(List.of(category.getName(), category.getDescription(), category.getParent(), category.getSlug())).update();
         }
 
     }
 
     @Override
-    public void update(ProductCategory category) {
+    public void update(Category category) {
         String sql = "UPDATE categories set  name= ?, description=?";
 
         jdbcClient.sql(sql)
@@ -58,12 +58,12 @@ public class ProductCategoryRepository implements CrudRepository<ProductCategory
     }
 
     @Override
-    public Optional<ProductCategory> getById(String id) {
-        String sql = "SELECT id, name, description WHERE id= :id";
+    public Optional<Category> getById(String id) {
+        String sql = "SELECT id, name, description, slug WHERE id= :id";
         return jdbcClient
                 .sql(sql)
                 .param("id", id)
-                .query(ProductCategory.class)
+                .query(Category.class)
                 .optional();
     }
 
