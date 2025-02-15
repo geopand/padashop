@@ -88,4 +88,15 @@ public class CartItemRestController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/item")
+    public ResponseEntity<String> deleteItemFromCart(@RequestParam long userId, @RequestParam long productId) {
+        Optional<CartItem> cartItem = cartItemRepository.getCartItemByUserIdAndProduct(userId, productId);
+        if (cartItem.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not in cart");
+        }
+        cartItemRepository.delete(cartItem.get().getId().toString());
+
+        return ResponseEntity.ok().build();
+    }
+
 }
