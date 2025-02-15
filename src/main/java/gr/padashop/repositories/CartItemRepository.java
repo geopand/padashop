@@ -198,7 +198,6 @@ public class CartItemRepository implements CrudRepository<CartItem> {
         @Override
         public CartItem mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-            System.out.println("Inside CartItemMapper");
             CartItem cartItem = new CartItem();
             Product p = new Product();
             cartItem.setId(rs.getLong("cartId"));
