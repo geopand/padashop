@@ -58,6 +58,7 @@ public class OrderItemRepository {
                     c.name AS categoryName,
                     c.id AS categoryId,
                     c.description AS categoryDescription,
+                    c.slug AS categorySlug,
                     c.parent AS parent
                 FROM
                     eshop.order_items
@@ -100,6 +101,7 @@ public class OrderItemRepository {
             category.setId(rs.getLong("categoryId"));
             category.setName(rs.getString("categoryName"));
             category.setDescription(rs.getString("categoryDescription"));
+            category.setSlug(rs.getString("categorySlug"));
             category.setParent(rs.getLong("parent"));
 
             orderItem.setProduct(product);

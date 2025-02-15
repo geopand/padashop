@@ -85,7 +85,7 @@ content = @`
                         </div>
 
                         <div class="sm:col-span-3">
-                            <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">
+                            <label for="file" class="block text-sm font-medium leading-6 text-gray-900">
                                 Εικόνα προϊόντος<span class="text-red-500">*</span>
                             </label>
                             <div class="mt-2">

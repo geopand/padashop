@@ -77,7 +77,7 @@ public class ProductRepository implements CrudRepository<Product> {
                     p.id AS productId,
                     p.name AS productName,
                     p.description AS productDescription,
-                    slug,
+                    p.slug as slug,
                     picture,
                     price,
                     status,
@@ -86,12 +86,13 @@ public class ProductRepository implements CrudRepository<Product> {
                     c.id AS categoryId,
                     c.name AS categoryName,
                     c.description AS categoryDescription,
+                    c.slug AS categorySlug,
                     parent
                 FROM
                     products AS p
                         LEFT JOIN
                     categories AS c ON p.category = c.id
-                WHERE slug = :slug
+                WHERE p.slug = :slug
                 limit 1;
                 """;
 
@@ -112,6 +113,7 @@ public class ProductRepository implements CrudRepository<Product> {
                     c.id AS categoryId,
                     c.name AS categoryName,
                     c.description AS categoryDescription,
+                    c.slug AS categorySlug,
                     parent
                 FROM
                     products AS p
@@ -178,6 +180,7 @@ public class ProductRepository implements CrudRepository<Product> {
             c.setId(rs.getLong("categoryId"));
             c.setName(rs.getString("categoryName"));
             c.setDescription(rs.getString("categoryDescription"));
+            c.setSlug(rs.getString("categorySlug"));
             c.setParent(rs.getLong("parent"));
 
             return p;

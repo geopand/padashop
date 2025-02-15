@@ -5,6 +5,7 @@ public class Category {
     private long id;
     private String name;
     private String description;
+    private String slug;
     private long parent;
 
     public Category() {}
@@ -43,5 +44,13 @@ public class Category {
 
     public void setParent(long parent) {
         this.parent = parent;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }
