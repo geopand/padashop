@@ -1,15 +1,13 @@
 package gr.padashop.web.api;
 
 
+import gr.padashop.models.Order;
 import gr.padashop.models.OrderDto;
 import gr.padashop.repositories.CartItemRepository;
 import gr.padashop.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/order")
@@ -27,15 +25,20 @@ public class OrderController {
     }
 
     @PostMapping
-    public String createOrder(@RequestBody OrderDto order) {
-
+    public Order createOrder(@RequestBody OrderDto order) {
         logger.info("{}", order);
         logger.info("{}", order.getCreditCard().toString());
         logger.info("{}", order.getAddress().toString());
 
-        orderService.createOrder(order);
+        Long createdOrderId = orderService.createOrder(order);
 
-        return "hello";
+        return new Order();
+    }
+
+
+    @GetMapping("/{orderId}")
+    Order getOrderById(@PathVariable Long orderId) {
+        return orderService.retrieveOrderById(orderId);
     }
 
 

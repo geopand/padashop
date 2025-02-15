@@ -1,7 +1,9 @@
 package gr.padashop.repositories;
 
 
+import gr.padashop.models.CCType;
 import gr.padashop.models.Order;
+import gr.padashop.models.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -76,9 +78,36 @@ public class OrderRepository {
     }
 
 
-
-    public Optional<Order> getById(String id) {
-        return Optional.empty();
+    public Optional<Order> getById(long orderId) {
+        String sql = """
+                SELECT
+                    id,
+                    user_id,
+                    ccName,
+                    ccType,
+                    ccNumber,
+                    cc_exp_month,
+                    cc_exp_year,
+                    ccCVC,
+                    is_self_pickup,
+                    street,
+                    city,
+                    state,
+                    zipCode,
+                    country,
+                    createdAt,
+                    type_name
+                FROM
+                    eshop.orders
+                LEFT JOIN cc_types
+                ON ccType = cc_types.type_id
+                WHERE id = :orderId ;
+                """;
+        return jdbcClient
+                .sql(sql)
+                .param("orderId", orderId)
+                .query(new OrderRowMapper())
+                .optional();
     }
 
 
@@ -87,9 +116,26 @@ public class OrderRepository {
         @Override
         public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
             Order order = new Order();
+            CCType ccType = new CCType();
+            ccType.setId(rs.getLong("ccType"));
+            ccType.setName(rs.getString("type_name"));
 
+            order.setId(rs.getLong("id"));
+            order.setUserId(rs.getLong("user_id"));
+            order.setCcName(rs.getString("ccName"));
+            order.setCcNumber(rs.getString("ccNumber"));
+            order.setCcType(ccType);
+            order.setCcExpiryMoth(rs.getInt("cc_exp_month"));
+            order.setCcExpiryMoth(rs.getInt("cc_exp_year"));
+            order.setCcCVC(rs.getInt("ccCVC"));
+            order.setSelfPickUp(false);
+            order.setStreet(rs.getString("street"));
+            order.setCity(rs.getString("city"));
+            order.setState(rs.getString("state"));
+            order.setZipCode(rs.getString("zipCode"));
+            order.setCountry(rs.getString("country"));
 
-            return null;
+            return order;
         }
     }
 }

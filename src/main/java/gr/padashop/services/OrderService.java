@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -47,7 +48,7 @@ public class OrderService {
         order.setCcNumber(orderDto.getCreditCard().number());
         order.setCcExpiryMoth(orderDto.getCreditCard().expiryMonth());
         order.setCcExpiryYear(orderDto.getCreditCard().expiryYear());
-        order.setCcType(creditCardType);
+        order.setCcType(new CCType((long)creditCardType));
         order.setCity(orderDto.getAddress().city());
         order.setCountry(orderDto.getAddress().country());
         order.setStreet(orderDto.getAddress().street());
@@ -72,5 +73,14 @@ public class OrderService {
             return null;
         }
         return orderId;
+    }
+
+
+    public Order retrieveOrderById(Long id) {
+        List<OrderItem> items = orderItemRepository.getAllByOrderId(id);
+        Optional<Order> order = orderRepository.getById(id);
+        order.ifPresent(o -> o.setItems(items));
+
+        return order.orElse(null);
     }
 }
