@@ -66,7 +66,7 @@ public class OrderItemRepository {
                         LEFT JOIN
                     categories AS c ON products.category = c.id
                 WHERE
-                    order_Id = 10;
+                    order_Id = :orderId;
                 """;
 
         return jdbcClient.sql(sql)

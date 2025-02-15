@@ -68,7 +68,7 @@ public class OrderRepository {
                 """;
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcClient.sql(sql)
-                .params(List.of(order.getUserId(), order.getCcName(), order.getCcType(),
+                .params(List.of(order.getUserId(), order.getCcName(), order.getCcType().getId(),
                         order.getCcNumber(), order.getCcExpiryMoth(),
                         order.getCcExpiryYear(), order.getCcCVC(), order.getStreet(),
                         order.getCity(), order.getState(), order.getZipCode(), order.getCountry()))

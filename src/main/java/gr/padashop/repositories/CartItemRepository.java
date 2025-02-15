@@ -162,6 +162,14 @@ public class CartItemRepository implements CrudRepository<CartItem> {
                 .update();
     }
 
+    public void clearCart(long userId){
+        String sql = "DELETE FROM cart where user_id= :userId";
+
+        jdbcClient.sql(sql)
+                .param("userId", userId)
+                .update();
+    }
+
 
 
     @Override

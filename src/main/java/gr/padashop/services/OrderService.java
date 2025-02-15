@@ -60,7 +60,7 @@ public class OrderService {
             System.out.println("Before order id creation");
 
             orderId = orderRepository.createAndGetId(order).longValue();
-            System.out.println("AFter order id creation");
+            System.out.println("After order id creation");
             cartItems.forEach(cartItem -> {
                 orderItemRepository.createWithOrderId(new OrderItem(orderId,
                         cartItem.getProduct(),
@@ -70,7 +70,7 @@ public class OrderService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return -1L;
         }
         return orderId;
     }

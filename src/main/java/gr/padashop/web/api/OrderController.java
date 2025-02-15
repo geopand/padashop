@@ -18,27 +18,39 @@ public class OrderController {
     private final OrderService orderService;
 
 
-    OrderController(CartItemRepository cartItemRepository, OrderService orderService) {
+    public OrderController(CartItemRepository cartItemRepository, OrderService orderService) {
         this.cartItemRepository = cartItemRepository;
         this.orderService = orderService;
 
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody OrderDto order) {
-        logger.info("{}", order);
-        logger.info("{}", order.getCreditCard().toString());
-        logger.info("{}", order.getAddress().toString());
+    public OrderId createOrder(@RequestBody OrderDto order) {
 
         Long createdOrderId = orderService.createOrder(order);
-
-        return new Order();
+        cartItemRepository.clearCart(order.getUserId());
+        return new OrderId(createdOrderId);
     }
 
 
     @GetMapping("/{orderId}")
     Order getOrderById(@PathVariable Long orderId) {
         return orderService.retrieveOrderById(orderId);
+    }
+
+    static class OrderId {
+        Long id;
+        public OrderId(Long id){
+            this.id = id;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
     }
 
 
