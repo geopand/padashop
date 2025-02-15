@@ -35,7 +35,7 @@ public class OrderService {
         }
     };
 
-    public boolean createOrder(OrderDto orderDto) {
+    public Long createOrder(OrderDto orderDto) {
 
         List<CartItem> cartItems = cartItemRepository.getAllByUserId(orderDto.getUserId());
         int creditCardType = CREDIT_CARD_NAMES_TO_IDS.get(orderDto.getCreditCard().cardType());
@@ -56,7 +56,7 @@ public class OrderService {
 
         long orderId;
         try {
-            System.out.println("Befre order id creation");
+            System.out.println("Before order id creation");
 
             orderId = orderRepository.createAndGetId(order).longValue();
             System.out.println("AFter order id creation");
@@ -69,8 +69,8 @@ public class OrderService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        return orderId;
     }
 }

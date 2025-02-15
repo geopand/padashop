@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class OrderRepository implements CrudRepository<Order> {
+public class OrderRepository {
 
     private final JdbcClient jdbcClient;
 
@@ -22,12 +22,6 @@ public class OrderRepository implements CrudRepository<Order> {
         this.jdbcClient = jdbcClient;
     }
 
-    @Override
-    public List<Order> getAll() {
-        return List.of();
-    }
-
-    @Override
     public void create(Order order) {
         String sql = """
                 INSERT INTO eshop.orders(
@@ -81,17 +75,8 @@ public class OrderRepository implements CrudRepository<Order> {
         return keyHolder.getKey();
     }
 
-    @Override
-    public void update(Order order) {
 
-    }
 
-    @Override
-    public void delete(String id) {
-
-    }
-
-    @Override
     public Optional<Order> getById(String id) {
         return Optional.empty();
     }
