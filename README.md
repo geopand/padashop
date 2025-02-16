@@ -10,8 +10,7 @@ size: 5/4
 
 # Μάθημα: Ανάπτυξη εφαρμογών στο Διαδίκτυο
 ## Εργασία «Ηλεκτρονικό Κατάστημα»
-![bg right:35% fit ](pada-logo.png)
-<img src="https://github.com/geopand/padashop/tree/main/presentation/pada-logo.png">
+<img src="https://github.com/geopand/padashop/blob/main/presentation/pada-logo.png">
 
 <br/>
 
