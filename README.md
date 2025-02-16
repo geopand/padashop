@@ -1,12 +1,6 @@
 # Back end of the eshop application made for the purpose of complete the 3rd semester Uniwa Class: Web Application Development (2024-2025)
 
-<!--
-theme: default
-_class: ttl
-paginate: true
-_paginate: false
-size: 5/4
--->
+---
 
 # Μάθημα: Ανάπτυξη εφαρμογών στο Διαδίκτυο
 ## Εργασία «Ηλεκτρονικό Κατάστημα»
