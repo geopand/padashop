@@ -54,8 +54,7 @@ size: 5/4
 
 ---
 ## Αρχιτεκτονική συστήματος
-
-![image](architecture.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/architecture.png">
 
 Οι **πελάτες** έχουν πρόσβαση στο περιεχόμενο μέσω της ΝΕΧΤ Js εφαρμογής.
 Ενώ οι **διαχειριστές** έχουν πρόσβαση στο διαχειριστικό που σερβίρεται απευθείας από το backend.
@@ -75,12 +74,11 @@ size: 5/4
 
 ### Entity relationship diagram
 
-![bg right:70% fit ](ERP-diagram.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/ERP-diagram.png">
 
 ---
 ### Back-end
-
-![bg right:35% fit ](backend-tech.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/backend-tech.png">
 
 Η εφαρμογή διαθέτει backend το οποίο σερβίρει:
 - **REST** endpoints που καταναλώνονται από την front-end εφαρμογή
@@ -94,7 +92,7 @@ H επικοινωνία με τη βάση γίνεται με παραδοσι
 
 ### Front-end
 
-![bg right:35% fit](react-n-nextjs.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/react-n-nextjs.png">
 
 H front-end εφαρμογή είναι αυτή που βλέπουν οι απλοί/διαπιστευμένοι πελάτες για να αγοράσουν τα προϊόντα.
 
@@ -130,7 +128,7 @@ H front-end εφαρμογή είναι αυτή που βλέπουν οι απ
 <br>
 
 Στη σελίδα:http://localhost:8080/product/ βρίσκεται η φόρμα εισαγωγής προϊόντων.
-![bg right:55% fit](create-new-product.png).
+<img src="https://github.com/geopand/padashop/blob/main/presentation/create-new-product.png">
 
 Τα δεδομένα εγγράφονται στη βάση ενώ οι εικόνες σώζονται σε τοπικό φάκελο.
 
@@ -142,7 +140,8 @@ H front-end εφαρμογή είναι αυτή που βλέπουν οι απ
 <br>
 
 Στη σελίδα:http://localhost:8080/category/ βρίσκεται η φόρμα εισαγωγής κατηγοριών.
-![bg right:55% fit](create-new-category.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/create-new-category.png">
+
 
 Από εδώ δημιουργούνται οι κατηγορίες και μετά το front-end τις ανανεώνει πλήρως δυναμικά στο μενού του.
 
@@ -158,7 +157,8 @@ H κύρια σελίδα του καταστήματος.
 
 Όλα τα δεδομένα που εμφανίζονται αλλάζουν πλήρως δυναμικά από το backend.
 
-![bg right:55% fit](main-page.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/main-page.png">
+
 
 
 ---
@@ -169,13 +169,14 @@ H κύρια σελίδα του καταστήματος.
 
  Το breadcrump ενημερώνεται δυναμικά.
 
-![bg right:55% fit](category-page-listing.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/category-page-listing.png">
 
 
 ---
 
 ## Σελίδα προϊόντος
-![bg right:52% fit](product-page.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/product-page.png">
+
 
 Κάθε προιόν έχει τη δική του σελίδα.
 - Εικόνα
@@ -196,7 +197,7 @@ H κύρια σελίδα του καταστήματος.
 Το σύστημα δεν αφήνει να προστεθεί ποσότητα που δεν υπάρχει στο απόθεμα.
 Κατά την προσθήκη εμφανίζεται βοηθητικό toast.
 
-![bg right:52% fit](add-to-cart.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/add-to-cart.png">
 
 
 ---
@@ -205,7 +206,8 @@ H κύρια σελίδα του καταστήματος.
 
 Παραπάνω από αυτά που διαθέτει το κατάστημα εμφανίζεται μήνυμα λάθους
 
-![bg right:52% fit](enter-out-of-stock.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/enter-out-of-stock.png">
+
 
 ---
 
@@ -226,7 +228,8 @@ H κύρια σελίδα του καταστήματος.
 
 ## Εισαγωγή διεύθυνσης
 
-![bg right:50% fit](shipping-address.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/shipping-address.png">
+
 
 Αν κάνουμε κλικ στο Επόμενο του καλαθιού το σύστημα μας ζητάει τη διεύθυνση αποστολής.
 
@@ -239,7 +242,8 @@ H κύρια σελίδα του καταστήματος.
 
 ## Εισαγωγή κάρτας πληρωμής
 
-![bg right:50% fit](payment-card-form.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/payment-card-form.png">
+
 
 Μετά τη διεύθυνση ο χρήστης πρέπει να βάλει τις πληροφορίες της κάρτας του.
 
@@ -256,13 +260,14 @@ H κύρια σελίδα του καταστήματος.
 
 Εμφανίζεται και link που τον πηγαινει στην πίσω σελίδα.
 
-![bg right:50% fit](order-verification.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/order-verification.png">
 
 
 ---
 
 ### Responsiveness
-![bg right:50% fit](responsiveness.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/responsiveness.png">
+
 
 Οι σελίδες του ηλεκτρονικού καταστήματος είναι πλήρως responsive ώστε να φαίνονται καλά,
 τόσο σε μεγάλες όσο και σε μικρές οθόνες κινητών.
@@ -272,7 +277,8 @@ H κύρια σελίδα του καταστήματος.
 
 ## Not found σελίδα
 
-![bg right:50% fit](404-page.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/404-page.png">
+
 
 Κάθε φορά που ο χρήστης θα πάει σε σελίδα που δεν υπάρχει το σύστημα θα τον κατευθύνει στην 404 σελίδα.
 
@@ -284,7 +290,8 @@ H κύρια σελίδα του καταστήματος.
 
 ## Αυθεντικοποίηση
 
-![bg right:50% fit](login-sign-up-form.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/login-sign-up-form.png">
+
 
 Δεν έχει υλοποιηθεί αυθεντικοποίηση χρήστη. Όλες οι ενέργειες γίνονται με προκαθορισμένο χρήστη.
 
