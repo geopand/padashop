@@ -101,6 +101,34 @@ public class ProductRepository implements CrudRepository<Product> {
 
     }
 
+    public List<Product> getByCategorySlug(String cSlug) {
+        String sql = """
+                SELECT
+                    p.id AS productId,
+                    p.name AS productName,
+                    p.description AS productDescription,
+                    p.slug as slug,
+                    picture,
+                    price,
+                    status,
+                    brand,
+                    stock,
+                    c.id AS categoryId,
+                    c.name AS categoryName,
+                    c.description AS categoryDescription,
+                    c.slug AS categorySlug,
+                    parent
+                FROM
+                    products AS p
+                        LEFT JOIN
+                    categories AS c ON p.category = c.id
+                WHERE c.slug = :cSlug
+                """;
+
+        return jdbcClient.sql(sql).param("cSlug", cSlug).query(new ProductMapper()).list();
+
+    }
+
     public List<Product> getAllByCategoryId(Long categoryId) {
         String sql = """
                 SELECT

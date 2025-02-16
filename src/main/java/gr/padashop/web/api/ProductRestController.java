@@ -31,6 +31,11 @@ public class ProductRestController {
         return productRepository.getBySlug(slug);
     }
 
+    @GetMapping("/categories/slug")
+    List<Product> getProductsUnderCategory(@RequestParam String slug) {
+        return productRepository.getByCategorySlug(slug);
+    }
+
 
 //    http://localhost:8080/api/products/category/4
     @GetMapping("/category/{id}")
