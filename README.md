@@ -221,8 +221,7 @@ H κύρια σελίδα του καταστήματος.
 
 Κάθε ενέργεια στο καλάθι ενημερώνει και τη βάση την ίδια στιγμή.
 
-
-![bg right:50% fit](my-cart.png)
+<img src="https://github.com/geopand/padashop/blob/main/presentation/my-cart.png">
 
 ---
 
