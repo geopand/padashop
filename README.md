@@ -19,7 +19,7 @@ size: 5/4
 Επ. Καθ. Χρήστος Τρούσσας
 <br>
 
-**Φοιτητής**: Παντελιάς Γεώργιος (mscict23047)
+**Φοιτητής**: Παντελιάς Γεώργιος
 **Έτος**: 2025
 
 ---
@@ -45,7 +45,7 @@ size: 5/4
 Στο φάκελο `padashop/docker` βρισκεται το docker compose file της MYSQL
 Είναι προσβάσιμο στο localhost:8080
 
-Στο φάκελο `padashop-front` βρίσκεται το front-end. Για να ξεινήσει πρώτα τρέχουμε
+Στο φάκελο `padashop-front` βρίσκεται το front-end. Repo [link](https://github.com/geopand/padashop-front). Για να ξεινήσει πρώτα τρέχουμε
 - `npm ci`
 - `npm run dev` (για την εκκίνηση)
 Είναι προσβάσιμο στο localhost:3000
