@@ -53,7 +53,7 @@ public class ProductRepository implements CrudRepository<Product> {
                     p.id AS productId,
                     p.name AS productName,
                     p.description AS productDescription,
-                    slug,
+                    p.slug as slug,
                     picture,
                     price,
                     status,
@@ -62,6 +62,7 @@ public class ProductRepository implements CrudRepository<Product> {
                     c.id AS categoryId,
                     c.name AS categoryName,
                     c.description AS categoryDescription,
+                    c.slug AS categorySlug,
                     parent
                 FROM
                     products AS p
@@ -106,7 +107,7 @@ public class ProductRepository implements CrudRepository<Product> {
                     p.id AS productId,
                     p.name AS productName,
                     p.description AS productDescription,
-                    slug,
+                    p.slug AS slug,
                     picture,
                     price,
                     status,
