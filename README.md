@@ -1,4 +1,4 @@
-# Back end of the eshop application made for the purpose of complete the 3rd semester Uniwa Class: Web Application Development (2024-2025)
+# Back end of the eshop application made for the purpose of completing the 3rd semester Uniwa Class: Web Application Development (2024-2025)
 
 ---
 
